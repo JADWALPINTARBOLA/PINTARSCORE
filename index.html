@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#30285d">
+<meta name="description" content="Jadwal sepak bola, skor aktual, dan estimasi prediksi pertandingan BOLAUTAMA.">
+<meta property="og:title" content="BOLAUTAMA | Prediksi & Jadwal Bola">
+<meta property="og:description" content="Jadwal sepak bola dan estimasi prediksi pertandingan BOLAUTAMA.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+  <link rel="shortcut icon" href="https://bolautamakrn.com/Images/logo.png">        
+  <title>BOLAUTAMA | PREDIKSI BOLA TERBAIK </title>
+
+
+<script>
+/* Terapkan tema tersimpan sebelum halaman tampil (mencegah kedipan) */
+(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<dialog class="promo-dialog" id="promoPopup" aria-label="Informasi BOLAUTAMA Link Pusat">
+<button class="promo-close" id="closePromo" type="button" aria-label="Tutup iklan" title="Tutup iklan" autofocus>×</button>
+<img
+  src="https://i.ibb.co/gZrrnMth/download.webp"
+  alt="BOLA UTAMA Link Pusat"
+  width="800"
+  height="404"
+  loading="eager"
+  fetchpriority="high"
+  decoding="async"
+>
+</dialog>
+
+
+<header>
+
+<div class="wrap nav">
+
+  <!-- LOGO WEBSITE -->
+  <a class="brand" href="https://bolautamakrn.com">
+    <img
+      class="brand-logo"
+      src="https://bolautamakrn.com/Images/logo.png"
+      alt="Logo BOLAUTAMA"
+      onerror="this.hidden=true"
+    ><span class="brand-wordmark">BOLAUTAMA</span>
+  </a>
+
+  <!-- TOMBOL MENU -->
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="navMenu"
+  >
+    ☰ MENU
+  </button>
+
+  <!-- DAFTAR MENU -->
+  <nav class="navlinks" id="navMenu">
+    <a href="https://bolautamanih.com/">JP BOLAUTAMA</a>
+    <a href="#prediksi">Prediksi</a>
+    <a href="#jadwal">Jadwal</a>
+    <a href="#provider">Provider</a>
+  </nav>
+
+  <!-- TOMBOL MODE TERANG / GELAP -->
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti mode terang/gelap" title="Ganti mode terang/gelap">
+    <span class="theme-icon" aria-hidden="true">🌙</span>
+  </button>
+
+  <!-- TANGGAL OTOMATIS -->
+  <span class="navmeta" id="dateLabel"></span>
+
+</div>
+
+</header>
+
+<main class="wrap">
+<div class="page-head">
+<div>
+<div class="eyebrow">BOLAUTAMA / PREDIKSI</div>
+<h1>Prediksi & jadwal bola</h1>
+<p>Pertandingan pilihan, prediksi skor, dan hasil terbaru.</p>
+</div>
+<button class="update" id="reload" aria-label="Perbarui pertandingan" title="Perbarui pertandingan">↻ PERBARUI PERTANDINGAN</button>
+</div>
+<section class="hero" aria-label="Slider pertandingan" aria-roledescription="carousel" tabindex="0">
+<div class="hero-bar">
+<strong>PERTANDINGAN PILIHAN</strong>
+<span id="counter">MATCH 01</span>
+</div>
+<div class="hero-content" id="heroContent">
+<div class="empty-state">Memuat pertandingan…</div>
+</div>
+<div class="hero-bottom">
+<div class="hero-footer">
+<span id="heroDate">Prediksi awal · 0 - 0</span>
+<div class="hero-tools">
+<div class="dots" id="dots">
+</div>
+<button class="arrow" id="pauseSlider" aria-label="Jeda slider" aria-pressed="false" title="Jeda slider">Ⅱ</button>
+<button class="arrow" id="prev" aria-label="Sebelumnya">‹</button>
+<button class="arrow" id="next" aria-label="Berikutnya">›</button>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="prediksi">
+<div class="section-head">
+<div>
+<h2>Prediksi pertandingan</h2>
+<p>Prediksi skor dan peluang otomatis berbasis estimasi sederhana.</p>
+</div>
+</div>
+  
+<!-- SEARCH PREDIKSI LIGA -->
+<div class="league-search">
+  <span class="search-icon">⌕</span>
+  <input
+    type="search"
+    id="leagueSearch"
+    placeholder="Cari liga atau nama tim..."
+    autocomplete="off"
+    aria-label="Cari liga atau tim"
+  >
+  <button type="button" id="clearLeagueSearch" aria-label="Hapus pencarian">
+    ✕
+  </button>
+</div>
+
+<div class="league-slider">
+
+  <button class="league-arrow prev"
+          type="button"
+          aria-label="Geser liga ke kiri">
+    &#10094;
+  </button>
+
+  <div class="league-filters" id="leagueFilters">
+
+    <button class="filter active" data-league="all">Semua Liga</button>
+
+    <!-- INGGRIS -->
+    <button class="filter" data-league="eng.1">Premier League</button>
+    <button class="filter" data-league="eng.2">Championship</button>
+    <button class="filter" data-league="eng.3">League One</button>
+    <button class="filter" data-league="eng.4">League Two</button>
+    <button class="filter" data-league="eng.fa">FA Cup</button>
+    <button class="filter" data-league="eng.league_cup">EFL Cup</button>
+
+    <!-- SPANYOL -->
+    <button class="filter" data-league="esp.1">La Liga</button>
+    <button class="filter" data-league="esp.2">La Liga 2</button>
+    <button class="filter" data-league="esp.copa_del_rey">Copa del Rey</button>
+
+    <!-- ITALIA -->
+    <button class="filter" data-league="ita.1">Serie A</button>
+    <button class="filter" data-league="ita.2">Serie B</button>
+    <button class="filter" data-league="ita.coppa_italia">Coppa Italia</button>
+
+    <!-- JERMAN -->
+    <button class="filter" data-league="ger.1">Bundesliga</button>
+    <button class="filter" data-league="ger.2">2. Bundesliga</button>
+    <button class="filter" data-league="ger.3">3. Liga</button>
+    <button class="filter" data-league="ger.dfb_pokal">DFB Pokal</button>
+
+    <!-- PRANCIS -->
+    <button class="filter" data-league="fra.1">Ligue 1</button>
+    <button class="filter" data-league="fra.2">Ligue 2</button>
+    <button class="filter" data-league="fra.coupe_de_france">Coupe de France</button>
+
+    <!-- EROPA -->
+    <button class="filter" data-league="uefa.champions">Champions League</button>
+    <button class="filter" data-league="uefa.europa">Europa League</button>
+    <button class="filter" data-league="uefa.europa.conf">Conference League</button>
+    <button class="filter" data-league="uefa.euro">EURO</button>
+    <button class="filter" data-league="uefa.nations">Nations League</button>
+
+    <!-- BELANDA & PORTUGAL -->
+    <button class="filter" data-league="ned.1">Eredivisie</button>
+    <button class="filter" data-league="ned.2">Eerste Divisie</button>
+    <button class="filter" data-league="por.1">Primeira Liga</button>
+    <button class="filter" data-league="por.cup">Taça de Portugal</button>
+
+    <!-- SKOTLANDIA & LAINNYA -->
+    <button class="filter" data-league="sco.1">Scottish Premiership</button>
+    <button class="filter" data-league="tur.1">Süper Lig</button>
+    <button class="filter" data-league="bel.1">Belgian Pro League</button>
+    <button class="filter" data-league="gre.1">Greek Super League</button>
+    <button class="filter" data-league="aut.1">Austrian Bundesliga</button>
+    <button class="filter" data-league="sui.1">Swiss Super League</button>
+
+    <!-- AMERIKA -->
+    <button class="filter" data-league="usa.1">MLS</button>
+    <button class="filter" data-league="usa.nwsl">NWSL Women</button>
+    <button class="filter" data-league="mex.1">Liga MX</button>
+    <button class="filter" data-league="bra.1">Brasileirão Serie A</button>
+    <button class="filter" data-league="bra.2">Brasileirão Serie B</button>
+    <button class="filter" data-league="arg.1">Argentina Primera</button>
+    <button class="filter" data-league="conmebol.libertadores">Copa Libertadores</button>
+    <button class="filter" data-league="conmebol.sudamericana">Copa Sudamericana</button>
+    <button class="filter" data-league="conmebol.america">Copa América</button>
+
+    <!-- ASIA -->
+    <button class="filter" data-league="afc.champions">AFC Champions League Elite</button>
+    <button class="filter" data-league="afc.cup">AFC Champions League Two</button>
+    <button class="filter" data-league="afc.asian.cup">AFC Asian Cup</button>
+    <button class="filter" data-league="ksa.1">Saudi Pro League</button>
+    <button class="filter" data-league="ksa.kings.cup">Saudi King's Cup</button>
+    <button class="filter" data-league="jpn.1">Japan J1 League</button>
+    <button class="filter" data-league="chn.1">Chinese Super League</button>
+    <button class="filter" data-league="ind.1">Indian Super League</button>
+    <button class="filter" data-league="tha.1">Thai League 1</button>
+    <button class="filter" data-league="mys.1">Malaysia Super League</button>
+    <button class="filter" data-league="idn.1">Indonesia Super League</button>
+    <button class="filter" data-league="sgp.1">Singapore Premier League</button>
+    <button class="filter" data-league="aus.1">Australia A-League</button>
+
+    <!-- AFRIKA -->
+    <button class="filter" data-league="caf.nations">Africa Cup of Nations</button>
+    <button class="filter" data-league="caf.champions">CAF Champions League</button>
+    <button class="filter" data-league="caf.confed">CAF Confederation Cup</button>
+    <button class="filter" data-league="rsa.1">South African Premiership</button>
+
+    <!-- FIFA & INTERNASIONAL -->
+    <button class="filter" data-league="fifa.world">FIFA World Cup</button>
+    <button class="filter" data-league="fifa.wwc">FIFA Women's World Cup</button>
+    <button class="filter" data-league="fifa.cwc">FIFA Club World Cup</button>
+    <button class="filter" data-league="fifa.world.u20">FIFA U-20 World Cup</button>
+    <button class="filter" data-league="fifa.world.u17">FIFA U-17 World Cup</button>
+    <button class="filter" data-league="fifa.worldq">World Cup Qualifiers</button>
+    <button class="filter" data-league="fifa.worldq.afc">FIFA Asian Qualifiers</button>
+    <button class="filter" data-league="fifa.worldq.uefa">FIFA European Qualifiers</button>
+    <button class="filter" data-league="fifa.worldq.concacaf">FIFA CONCACAF Qualifiers</button>
+    <button class="filter" data-league="fifa.worldq.conmebol">FIFA South American Qualifiers</button>
+    <button class="filter" data-league="fifa.worldq.caf">FIFA African Qualifiers</button>
+    <button class="filter" data-league="fifa.friendly">International Friendlies</button>
+    <button class="filter" data-league="fifa.olympics">Olympic Football</button>
+
+  </div>
+
+  <button class="league-arrow next"
+          type="button"
+          aria-label="Geser liga ke kanan">
+    &#10095;
+  </button>
+
+</div>
+<div class="match-grid" id="matchGrid">
+<div class="empty-state">Memuat jadwal BOLAUTAMA</div>
+</div>
+</section>
+<section class="section" id="jadwal">
+<div class="section-head">
+<div>
+<h2>Jadwal & hasil</h2>
+<p>Skor aktual terpisah dari tampilan prediksi.</p>
+</div>
+</div>
+<div class="table-wrap">
+<div class="table-head">
+<span>WAKTU</span>
+<span>KOMPETISI</span>
+<span style="text-align:center">PERTANDINGAN</span>
+<span style="text-align:center">SKOR</span>
+<span style="text-align:center">STATUS</span>
+</div>
+<div id="fixtureList">
+<div class="empty-state">Memuat jadwal…</div>
+</div>
+</div>
+</section>
+<section class="section" id="provider" aria-label="BOLAUTAMA">
+<img class="promo-banner" src="https://i.imgur.com/cYUhXcE.jpeg" alt="BOLAUTAMA — tampilan permainan dan promosi" loading="lazy" width="180" height="120">
+</section>
+</main>
+<footer>
+<div class="wrap foot">
+<div>
+<strong>BOLA<em>UTAMA</em> PREDIKSI BOLA TERBAIK</strong>
+<div>Jadwal sepak bola · Skor aktual · Estimasi prediksi</div>
+</div>
+<div>© <span id="year">
+</span> BOLAUTAMA</div>
+</div>
+
+  <br/>
+<div class="bottom-gif">
+    <img src="https://i.imgur.com/2sOcQvK.png" alt="Jackpot, service 24 jam, engine terbaik, rahasia terjamin aman, 18 tahun ke atas" loading="lazy" width="180" height="32">
+</div>
+</footer>
+
+
+
+
+
+<button class="chat-launcher" id="openChat" type="button" aria-label="Buka live chat BOLAUTAMA" title="Live chat BOLAUTAMA">✉</button>
+
+
+<script src="app.js" defer></script>
+</body>
+</html>
