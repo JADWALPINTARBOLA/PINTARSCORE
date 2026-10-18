@@ -302,24 +302,32 @@
     background: #030609;
     border-top: 2px solid #00e5ff;
     box-shadow: 0 -3px 14px #00e5ff30;
+<style>
+.bottom-gif {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    background: #030609;
+    border-top: 2px solid #00ff00;
+    box-shadow: 0 -3px 14px #00ff0050;
 }
- 
+
 .bottom-gif img {
     width: 100%;
     display: block;
-    filter: grayscale(0.35) sepia(0.6) hue-rotate(145deg) saturate(2.2) brightness(0.9);
+    filter: grayscale(1) sepia(1) hue-rotate(70deg)
+            saturate(5) brightness(1.1);
 }
- 
 </style>
-<br/>
+
+<br>
+
 <div class="bottom-gif">
-<img src="https://i.postimg.cc/mrYdMD9r/gifkz.gif" alt="GIF">
+    <img src="https://i.postimg.cc/mrYdMD9r/gifkz.gif" alt="GIF">
 </div>
-</footer>
-
-
-
-
 
 <button class="chat-launcher" id="openChat" type="button" aria-label="Buka live chat PINTARBOLA" title="Live chat PINTARBOLA">✉</button>
 
