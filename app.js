@@ -953,7 +953,7 @@ document.getElementById("openChat").onclick = function () {
   window.zESettings = { webWidget: { chat: { connectOnPageLoad: false } } };
   const script = document.createElement("script");
   script.id = "ze-snippet";
-  script.src = "https://static.zdassets.com/ekr/snippet.js?key=1ba55e5c-574f-4b1e-9175-cd172f58bdd9";
+  script.src = "https://static.zdassets.com/ekr/snippet.js?key=1f7b1b1f-ba1a-4b16-a2cc-06a3bf2e4fd1";
   script.onload = () => { button.hidden = true; window.zE("webWidget", "open"); };
   script.onerror = () => { button.disabled = false; button.title = "Chat belum tersedia. Coba lagi."; };
   document.body.appendChild(script);
