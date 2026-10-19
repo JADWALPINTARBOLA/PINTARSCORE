@@ -953,63 +953,30 @@ document.getElementById("openChat").onclick = function () {
   window.zESettings = { webWidget: { chat: { connectOnPageLoad: false } } };
   const script = document.createElement("script");
   script.id = "ze-snippet";
-  script.src = "https://static.zdassets.com/ekr/snippet.js?key=1f7b1b1f-ba1a-4b16-a2cc-06a3bf2e4fd1";
+  script.src = "https://static.zdassets.com/ekr/snippet.js?key=1ba55e5c-574f-4b1e-9175-cd172f58bdd9";
   script.onload = () => { button.hidden = true; window.zE("webWidget", "open"); };
   script.onerror = () => { button.disabled = false; button.title = "Chat belum tersedia. Coba lagi."; };
   document.body.appendChild(script);
 };
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.getElementById("themeToggle");
-
-    if (!toggle) {
-        console.warn("Tombol themeToggle tidak ditemukan!");
-        return;
+/* ===== MODE TERANG / GELAP (tambahan, tidak mengubah fungsi lain) ===== */
+(() => {
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const apply = (t) => {
+    root.setAttribute("data-theme", t);
+    if (btn) {
+      btn.querySelector(".theme-icon").textContent = t === "dark" ? "☀️" : "🌙";
+      btn.setAttribute("aria-pressed", String(t === "dark"));
+      btn.title = t === "dark" ? "Ganti ke mode terang" : "Ganti ke mode gelap";
     }
-
-    const icon = toggle.querySelector(".theme-icon");
-    const html = document.documentElement;
-
-    // Memuat tema yang tersimpan
-    let savedTheme = localStorage.getItem("site-theme");
-
-    if (savedTheme === "dark") {
-        html.classList.add("dark-mode");
-    } else {
-        html.classList.remove("dark-mode");
-    }
-
-    function updateIcon() {
-        const isDark = html.classList.contains("dark-mode");
-
-        if (icon) {
-            icon.textContent = isDark ? "☀️" : "🌙";
-        }
-
-        toggle.setAttribute(
-            "aria-label",
-            isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"
-        );
-
-        toggle.setAttribute(
-            "title",
-            isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"
-        );
-    }
-
-    updateIcon();
-
-    toggle.addEventListener("click", function () {
-        html.classList.toggle("dark-mode");
-
-        const isDark = html.classList.contains("dark-mode");
-
-        localStorage.setItem(
-            "site-theme",
-            isDark ? "dark" : "light"
-        );
-
-        updateIcon();
-    });
-});
+    if (meta) meta.setAttribute("content", t === "dark" ? "#1a2e1e" : "#1f5d32");
+  };
+  apply(root.getAttribute("data-theme") || "light");
+  btn?.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    apply(next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+})();
