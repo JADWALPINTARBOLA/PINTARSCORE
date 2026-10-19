@@ -58,3 +58,49 @@ main{padding:38px 0 64px}.page-head{display:flex;justify-content:space-between;a
     box-shadow: 0 0 10px #00ff41;
     pointer-events: none;
 }
+
+/* TOMBOL TEMA */
+.theme-toggle {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    z-index: 99999;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #00ff41;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #111111;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ff4160;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.08);
+}
+
+/* MODE GELAP */
+html.dark-mode body {
+    background: #101410 !important;
+    color: #ffffff !important;
+}
+
+html.dark-mode header,
+html.dark-mode main,
+html.dark-mode footer,
+html.dark-mode section,
+html.dark-mode .container,
+html.dark-mode .content {
+    background-color: #101410 !important;
+    color: #ffffff !important;
+}
+
+/* IKON TOMBOL */
+html.dark-mode .theme-toggle {
+    background: #151515;
+    color: #ffffff;
+}
