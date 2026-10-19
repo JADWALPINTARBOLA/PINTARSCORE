@@ -963,24 +963,37 @@ document.getElementById("openChat").onclick = function () {
 document.addEventListener("DOMContentLoaded", function () {
     const toggle = document.getElementById("themeToggle");
 
-    if (!toggle) return;
+    if (!toggle) {
+        console.warn("Tombol themeToggle tidak ditemukan!");
+        return;
+    }
 
     const icon = toggle.querySelector(".theme-icon");
     const html = document.documentElement;
 
-    // Ambil tema yang tersimpan
+    // Memuat tema yang tersimpan
     let savedTheme = localStorage.getItem("site-theme");
 
     if (savedTheme === "dark") {
         html.classList.add("dark-mode");
+    } else {
+        html.classList.remove("dark-mode");
     }
 
     function updateIcon() {
         const isDark = html.classList.contains("dark-mode");
 
-        icon.textContent = isDark ? "☀️" : "🌙";
+        if (icon) {
+            icon.textContent = isDark ? "☀️" : "🌙";
+        }
+
         toggle.setAttribute(
             "aria-label",
+            isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"
+        );
+
+        toggle.setAttribute(
+            "title",
             isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"
         );
     }
@@ -1000,4 +1013,3 @@ document.addEventListener("DOMContentLoaded", function () {
         updateIcon();
     });
 });
-</script>
