@@ -83,24 +83,35 @@ main{padding:38px 0 64px}.page-head{display:flex;justify-content:space-between;a
     transform: scale(1.08);
 }
 
-/* MODE GELAP */
+/* Transisi perubahan tema */
+body,
+header,
+main,
+footer,
+section,
+.container,
+.content {
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Tombol tema */
+.theme-toggle {
+    cursor: pointer;
+    z-index: 99999;
+}
+
+/* Mode gelap */
 html.dark-mode body {
-    background: #101410 !important;
+    background-color: #101410 !important;
     color: #ffffff !important;
 }
 
 html.dark-mode header,
 html.dark-mode main,
-html.dark-mode footer,
 html.dark-mode section,
+html.dark-mode footer,
 html.dark-mode .container,
 html.dark-mode .content {
     background-color: #101410 !important;
     color: #ffffff !important;
-}
-
-/* IKON TOMBOL */
-html.dark-mode .theme-toggle {
-    background: #151515;
-    color: #ffffff;
 }
