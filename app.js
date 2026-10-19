@@ -959,24 +959,45 @@ document.getElementById("openChat").onclick = function () {
   document.body.appendChild(script);
 };
 
-/* ===== MODE TERANG / GELAP (tambahan, tidak mengubah fungsi lain) ===== */
-(() => {
-  const root = document.documentElement;
-  const btn = document.getElementById("themeToggle");
-  const meta = document.querySelector('meta[name="theme-color"]');
-  const apply = (t) => {
-    root.setAttribute("data-theme", t);
-    if (btn) {
-      btn.querySelector(".theme-icon").textContent = t === "dark" ? "☀️" : "🌙";
-      btn.setAttribute("aria-pressed", String(t === "dark"));
-      btn.title = t === "dark" ? "Ganti ke mode terang" : "Ganti ke mode gelap";
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("themeToggle");
+
+    if (!toggle) return;
+
+    const icon = toggle.querySelector(".theme-icon");
+    const html = document.documentElement;
+
+    // Ambil tema yang tersimpan
+    let savedTheme = localStorage.getItem("site-theme");
+
+    if (savedTheme === "dark") {
+        html.classList.add("dark-mode");
     }
-    if (meta) meta.setAttribute("content", t === "dark" ? "#1a2e1e" : "#1f5d32");
-  };
-  apply(root.getAttribute("data-theme") || "light");
-  btn?.addEventListener("click", () => {
-    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    apply(next);
-    try { localStorage.setItem("theme", next); } catch (e) {}
-  });
-})();
+
+    function updateIcon() {
+        const isDark = html.classList.contains("dark-mode");
+
+        icon.textContent = isDark ? "☀️" : "🌙";
+        toggle.setAttribute(
+            "aria-label",
+            isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"
+        );
+    }
+
+    updateIcon();
+
+    toggle.addEventListener("click", function () {
+        html.classList.toggle("dark-mode");
+
+        const isDark = html.classList.contains("dark-mode");
+
+        localStorage.setItem(
+            "site-theme",
+            isDark ? "dark" : "light"
+        );
+
+        updateIcon();
+    });
+});
+</script>
