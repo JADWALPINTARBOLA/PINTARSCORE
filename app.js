@@ -498,7 +498,7 @@ function renderHero() {
   });
 }
 
-const SLIDER_INTERVAL = 2000;
+const SLIDER_INTERVAL = 5500;
 let sliderTimer = null;
 let sliding = false;
 let paused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
